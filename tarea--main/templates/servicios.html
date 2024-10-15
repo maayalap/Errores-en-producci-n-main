@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ensigna - Servicios</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        header {
+            background-color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+        .logo span {
+            font-weight: bold;
+            font-size: 20px;
+            color: #333;
+        }
+        nav a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+        nav a.active {
+            border-bottom: 2px solid red;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 5px 10px;
+        }
+        .search-bar input {
+            border: none;
+            outline: none;
+            padding: 5px;
+            width: 200px;
+        }
+        .login-btn {
+            background-color: transparent;
+            border: none;
+            color: #4a6da7;
+            cursor: pointer;
+        }
+        .content {
+            background-color: #e6f3ff;
+            padding: 20px;
+        }
+        .services {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .service-item img {
+            width: 100px;
+            height: auto;
+        }
+        .start-btn {
+            background-color: #4a6da7;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        .start-btn img {
+            width: 20px;
+            height: 20px;
+            margin-left: 5px;
+        }
+        .info-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+        .video-section {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .video-placeholder {
+            width: 100px;
+            height: 60px;
+            background-color: #ff0000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+        }
+        .video-placeholder::after {
+            content: "▶";
+            color: white;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="/api/placeholder/30/30" alt="Ensigna Logo">
+                <span>ENSIGNA</span>
+            </div>
+            <nav>
+                <a href="#" class="active">INICIO</a>
+            </nav>
+            <div class="search-bar">
+                <img src="/api/placeholder/20/20" alt="Search">
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <button class="login-btn">INICIAR SESIÓN</button>
+        </header>
+        <div class="content">
+            <h2>SERVICIOS</h2>
+            <p>Escoja que tipo de aparato, nevera o lavadora necesita exminar</p>
+            <div class="services">
+                <div class="service-item">
+                    <img src="/api/placeholder/100/100" alt="Lavadora">
+                </div>
+                <div class="service-item">
+                    <img src="/api/placeholder/100/100" alt="Nevera">
+                </div>
+                <button class="start-btn">
+                    START
+                    <img src="/api/placeholder/20/20" alt="Wrench">
+                </button>
+            </div>
+            <div class="info-section">
+                <span>¿Como lo hace?</span>
+                <span>¿Como trabaja</span>
+                <span>¿Como trabaja</span>
+            </div>
+            <div class="video-section">
+                <div class="video-placeholder"></div>
+                <span>ECHA UN VISTAZO</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

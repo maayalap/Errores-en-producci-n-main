@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Producto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+            margin-top: 15px;
+            display: block;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #c9302c;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Eliminar Producto</h1>
+    
+    <form onsubmit="capturar_numero_de_serie(event)">
+        <div class="container">
+            <!-- Campo para el Número de Serie -->
+            <label for="serial-number">Número de Serie del Producto:</label>
+            <input type="text" id="serial-number" name="serial-number" placeholder="Ingrese el número de serie" required>
+
+            <!-- Botón para Eliminar Producto -->
+            <button type="submit">Eliminar Producto</button>
+        </div>
+        <div id="resultado"></div>
+        <script>
+            function capturar_numero_de_serie(event) {
+                event.preventDefault(); // Evita el envío tradicional del formulario
+        
+                // Crear un FormData a partir del formulario
+                let formData = new FormData(event.target);
+        
+                // Enviar los datos al servidor Flask usando fetch
+                fetch('/capturar_numero_serie', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        document.getElementById('resultado').textContent = 'Error: ' + data.error;
+                    } else {
+                        let resultado = `
+                            <h1>Se ha eliminado el Producto</h1>
+                            <p>${data.mensaje}</p>
+                        `;
+                        document.getElementById('resultado').innerHTML = resultado;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('resultado').textContent = 'Error al eliminar el producto.';
+                });
+            }
+        </script>
+        
+
+
+
+</body>
+</html>
+

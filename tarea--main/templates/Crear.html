@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta de Creación de Producto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+        }
+        input, select {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Formulario de Creación de Producto</h1>
+    
+    <form onsubmit="capturar_datos(event)">
+        <!-- Campo para el ID del Producto -->
+        <label for="product-id">ID del Producto:</label>
+        <input type="text" id="product-id" name="product-id" placeholder="Ingrese el ID del producto" required>
+        
+        <!-- Campo para el Modelo del Producto -->
+        <label for="model">Modelo del Producto:</label>
+        <input type="text" id="model" name="model" placeholder="Ingrese el modelo del producto" required>
+    
+        <!-- Campo para el Número de Serie -->
+        <label for="serial-number">Número de Serie:</label>
+        <input type="text" id="serial-number" name="serial-number" placeholder="Ingrese el número de serie" required>
+    
+        <!-- Campo para el Defecto del Producto -->
+        <label for="defect">Defecto del Producto:</label>
+        <input type="text" id="defect" name="defect" placeholder="Describa el defecto del producto" required>
+        
+        <!-- Botón para Enviar el Formulario -->
+        <button type="submit">Crear Producto</button>
+    </form>
+    <div id="resultado"></div>
+    <script>
+        function capturar_datos(event) {
+            event.preventDefault(); // Evita el envío tradicional del formulario
+        
+            // Crear un FormData a partir del formulario
+            let formData = new FormData(event.target);
+        
+            // Enviar los datos al servidor Flask usando fetch
+            fetch('/crear_usuario', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                // Verifica si la respuesta es válida
+                if (!response.ok) {
+                    throw new Error('Error de respuesta del servidor');
+                }
+                return response.json();  // Asegurarse de que sea JSON
+            })
+            .then(data => {
+                if (data.error) {
+                    document.getElementById('resultado').textContent = 'Error: ' + data.error;
+                } else {
+                    let resultado = `
+                        <h1>Se ha creado el Producto</h1>
+                        <p>${data.mensaje}</p>
+                    `;
+                    document.getElementById('resultado').innerHTML = resultado;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('resultado').textContent = 'Error al crear el producto.';
+            });
+        }
+    </script>
+
+</body>
+</html>
